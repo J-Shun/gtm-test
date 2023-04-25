@@ -1,29 +1,43 @@
 <template>
-  <h1>註冊測試</h1>
+  <div class="info-section">
+    <form class="login-form">
+      <h2>註冊測試</h2>
+      <div class="input-section">
+        <label for="customerId" class="input-label">用戶 ID：</label>
+        <input id="customerId" type="text" class="login-input" v-model="customerId">
+      </div>
+      <div class="input-section">
+        <label for="customerName" class="input-label">用戶名稱：</label>
+        <input id="customerName" type="text" class="login-input" v-model="customerName">
+      </div>
+      <div class="input-section">
+        <label for="customerEmail" class="input-label">用戶 Email：</label>
+        <input id="customerEmail" type="text" class="login-input" v-model="customerEmail">
+      </div>
+      <div class="input-section">
+        <label for="customerMobile" class="input-label">用戶手機：</label>
+        <input id="customerMobile" type="text" class="login-input" v-model="customerMobile">
+      </div>
+      <div class="btn-group">
+        <button class="submit-btn" @click.prevent="register">註冊</button>
+        <button class="submit-btn" @click.prevent="login">登入</button>
+      </div>
+    </form>
 
-  <form class="login-form">
-    <div class="input-section">
-      <label for="customerId" class="input-label">用戶 ID：</label>
-      <input id="customerId" type="text" class="login-input" v-model="customerId">
+    <div class="login-info">
+      <h2>登入資料</h2>
+      <div>
+        <p>用戶 ID： {{ loginId }}</p>
+        <p>用戶名稱： {{ loginName }}</p>
+        <p>用戶 Email： {{ loginEmail }}</p>
+        <p>用戶手機： {{ loginMobile }}</p>
+      </div>
     </div>
-    <div class="input-section">
-      <label for="customerName" class="input-label">用戶名稱：</label>
-      <input id="customerName" type="text" class="login-input" v-model="customerName">
-    </div>
-    <div class="input-section">
-      <label for="customerEmail" class="input-label">用戶 Email：</label>
-      <input id="customerEmail" type="text" class="login-input" v-model="customerEmail">
-    </div>
-    <div class="input-section">
-      <label for="customerMobile" class="input-label">用戶手機：</label>
-      <input id="customerMobile" type="text" class="login-input" v-model="customerMobile">
-    </div>
-    <button class="submit-btn" @click.prevent="login">註冊</button>
-  </form>
+  </div>
 
   <hr>
 
-  <h1>購物車、購買、轉換測試</h1>
+  <h2>購物車、購買、轉換測試</h2>
   <select id="cart-selection" class="cart-selection" v-model="selectedProduct">
     <option value="" disabled selected hidden>選擇商品</option>
     <option value="阿里山蓮汁雪耳燉135ml">阿里山蓮汁雪耳燉135ml</option>
@@ -70,11 +84,23 @@ const customerName = ref("")
 const customerEmail = ref("")
 const customerMobile = ref("")
 
+const loginId = ref("")
+const loginName = ref("")
+const loginEmail = ref("")
+const loginMobile = ref("")
+
+function register() {
+  loginId.value = customerId.value
+  loginName.value = customerName.value
+  loginEmail.value = customerEmail.value
+  loginMobile.value = customerMobile.value
+}
+
 function login() {
-  console.log("customerId:", customerId.value);
-  console.log("customerName:", customerName.value);
-  console.log("customerEmail:", customerEmail.value);
-  console.log("customerMobile:", customerMobile.value);
+  loginId.value = customerId.value
+  loginName.value = customerName.value
+  loginEmail.value = customerEmail.value
+  loginMobile.value = customerMobile.value
 }
 
 const selectedProduct = ref("")
@@ -101,13 +127,13 @@ function clear() {
 </script>
 
 <style scoped>
-hr {
-  margin-bottom: 80px;
+.info-section {
+  display: flex;
+  gap: 20px;
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 30px;
+hr {
+  margin-bottom: 80px;
 }
 
 h2 {
@@ -117,7 +143,12 @@ h2 {
 .login-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin-bottom: 80px;
+}
+
+.login-info {
+  width: 100%;
 }
 
 .input-section {
