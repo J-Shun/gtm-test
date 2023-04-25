@@ -47,10 +47,6 @@ onMounted(() => {
   flex-direction: column;
 }
 
-label {}
-
-.login-input {}
-
 .input-section {
   display: flex;
   flex-direction: column;

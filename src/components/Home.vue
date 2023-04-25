@@ -1,5 +1,6 @@
 <template>
   <h1>註冊測試</h1>
+
   <form class="login-form">
     <div class="input-section">
       <label for="customerId" class="input-label">用戶 ID：</label>
@@ -19,7 +20,9 @@
     </div>
     <button class="submit-btn" @click.prevent="login">註冊</button>
   </form>
+
   <hr>
+
   <h1>購物車、購買、轉換測試</h1>
   <select id="cart-selection" class="cart-selection" v-model="selectedProduct">
     <option value="" disabled selected hidden>選擇商品</option>
@@ -79,16 +82,16 @@ const cartProducts = ref([])
 const purchaseProducts = ref([])
 
 function addCart() {
-  if (selectedProduct.value === "") return
+  if (selectedProduct.value === "") return alert('無商品')
   cartProducts.value = [...cartProducts.value, selectedProduct.value]
-  sessionStorage.setItem("member_id",)
+  sessionStorage.setItem("customer_id", customerId.value)
 }
 
 function purchase() {
-  if (cartProducts.value.length === 0) return
+  if (cartProducts.value.length === 0) return alert('無商品')
   purchaseProducts.value = [...purchaseProducts.value, ...cartProducts.value]
   cartProducts.value = []
-  sessionStorage.setItem("member_id",)
+  sessionStorage.setItem("customer_id", customerId.value)
 }
 
 function clear() {
@@ -133,6 +136,10 @@ input {
 }
 
 .submit-btn {
+  width: 100%;
+}
+
+.default-btn {
   width: 100%;
 }
 
@@ -206,6 +213,7 @@ li {
 }
 
 .clear {
+  width: 100%;
   border: 1px solid #ec5757;
   color: #ec5757;
 }
@@ -215,6 +223,7 @@ li {
 }
 
 .purchase {
+  width: 100%;
   background: #18557e;
   color: #fff;
 }
